@@ -21,7 +21,7 @@ $ docker build --tag o2oa <directory_containing_Dockerfile>
 $ docker build --tag o2oa --build-arg INSTALL_FILE=<filename> --build-arg DOWNLOAD_ROOT=<url> <directory_containing_Dockerfile>
 ----
 
-## Test Run
+## Test
 [source,bash]
 ----
 $ docker run -it --rm --name o2oa --publish 80:80 --publish 20020:20020 --publish 20030:20030 --volume <directory_for_config>:/opt/o2server/config:Z --volume <directory_for_local>:/opt/o2server/local:Z o2oa
@@ -29,9 +29,15 @@ $ docker run -it --rm --name o2oa --publish 80:80 --publish 20020:20020 --publis
 
 In the O2OA console, type `start` to start all services, and then use a browser to test if O2OA is working.
 
-## Run
+## Create Container
 [source,bash]
 ----
 $ docker volume create --opt type=none --opt device=<directory_for_config> --opt o=bind o2oa_config
 $ docker run --detach --name o2oa --restart unless-stopped --publish 80:80 --publish 20020:20020 --publish 20030:20030 --volume o2oa_config:/opt/o2server/config:Z --volume <directory_for_local>:/opt/o2server/local:Z o2oa
+----
+
+## Enter O2OA Console of a Running Container
+[source,bash]
+----
+$ docker exec -it o2oa /bin/sh /opt/o2server/console_linux.sh
 ----
