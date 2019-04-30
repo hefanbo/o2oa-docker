@@ -20,6 +20,8 @@ $ docker build --tag o2oa <directory_containing_Dockerfile>
 ----
 $ docker build --tag o2oa --build-arg INSTALL_FILE=<filename> --build-arg DOWNLOAD_ROOT=<url> <directory_containing_Dockerfile>
 ----
++
+The script `get_latest_url.sh` may help to find the latest version.
 
 ## Test
 [source,bash]

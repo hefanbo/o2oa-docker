@@ -1,6 +1,6 @@
 FROM phusion/baseimage:0.11 as builder
 WORKDIR /opt
-ARG INSTALL_FILE=o2server_20190416210431_linux.zip
+ARG INSTALL_FILE=o2server_20190426200329_linux.zip
 ARG DOWNLOAD_ROOT=http://www.o2oa.net/download/versions
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y unzip
 ADD $DOWNLOAD_ROOT/$INSTALL_FILE .
