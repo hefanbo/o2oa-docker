@@ -1,8 +1,7 @@
-FROM phusion/baseimage:0.11 as builder
+FROM alpine:3.9 as builder
 WORKDIR /opt
-ARG INSTALL_FILE=o2server_20190426200329_linux.zip
+ARG INSTALL_FILE=o2server_20190426125713_linux.zip
 ARG DOWNLOAD_ROOT=http://www.o2oa.net/download/versions
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y unzip
 ADD $DOWNLOAD_ROOT/$INSTALL_FILE .
 RUN unzip -q $INSTALL_FILE && sed "1 a \ \ \"autoStart\":\ true," o2server/configSample/node_127.0.0.1.json > o2server/config/node_127.0.0.1.json
 
