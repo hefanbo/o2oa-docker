@@ -26,7 +26,7 @@ The script `get_latest_url.sh` may help to find the latest version.
 ## Test
 [source,bash]
 ----
-$ docker run -it --rm --name o2oa --publish 80:80 --publish 20020:20020 --publish 20030:20030 --volume <directory_for_config>:/opt/o2server/config:Z --volume <directory_for_local>:/opt/o2server/local:Z o2oa
+$ docker run -it --rm --name o2oa --publish 80:80 --publish 20020:20020 --publish 20030:20030 --volume <directory_for_config>:/opt/o2server/config --volume <directory_for_local>:/opt/o2server/local o2oa
 ----
 
 In the O2OA console, type `start` to start all services, and then use a browser to test if O2OA is working.
@@ -35,7 +35,7 @@ In the O2OA console, type `start` to start all services, and then use a browser 
 [source,bash]
 ----
 $ docker volume create --opt type=none --opt device=<directory_for_config> --opt o=bind o2oa_config
-$ docker run --detach --name o2oa --restart unless-stopped --publish 80:80 --publish 20020:20020 --publish 20030:20030 --volume o2oa_config:/opt/o2server/config:Z --volume <directory_for_local>:/opt/o2server/local:Z o2oa
+$ docker run --detach --name o2oa --restart unless-stopped --publish 80:80 --publish 20020:20020 --publish 20030:20030 --volume o2oa_config:/opt/o2server/config --volume <directory_for_local>:/opt/o2server/local o2oa
 ----
 
 ## Enter O2OA Console of a Running Container
