@@ -1,0 +1,42 @@
+version: '3'
+services:
+  # db:
+  #   image: mariadb
+  #   restart: unless-stopped
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=o2oa_dbpass
+  #     - MYSQL_USER=o2oa_dbuser
+  #     - MYSQL_PASSWORD=o2oa_dbpass
+  #     - MYSQL_DATABASE=X
+  #   volumes:
+  #     - ./volumes/db:/var/lib/mysql
+  #     - /etc/localtime:/etc/localtime:ro
+  db:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=o2oa_dbuser
+      - POSTGRES_PASSWORD=o2oa_dbpass
+      - POSTGRES_DB=X
+    volumes:
+      - ./volumes/db:/var/lib/postgres/data
+      - /etc/localtime:/etc/localtime:ro
+  o2oa:
+    image: o2oa
+    build: o2oa
+    restart: unless-stopped
+    depends_on:
+      - "db"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=o2oa_dbuser
+      - DB_PASSWORD=o2oa_dbpass
+    ports:
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:20020:20020"
+      - "127.0.0.1:20030:20030"
+    volumes:
+      - ./volumes/config:/opt/o2server/config
+      - ./volumes/local:/opt/o2server/local
+      - /etc/localtime:/etc/localtime:ro
