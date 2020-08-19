@@ -19,7 +19,7 @@ services:
       - POSTGRES_PASSWORD=o2oa_dbpass
       - POSTGRES_DB=X
     volumes:
-      - ./volumes/db:/var/lib/postgres/data
+      - ./volumes/db:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
   o2oa:
     image: o2oa
@@ -33,9 +33,9 @@ services:
       - DB_USER=o2oa_dbuser
       - DB_PASSWORD=o2oa_dbpass
     ports:
-      - "127.0.0.1:80:80"
-      - "127.0.0.1:20020:20020"
-      - "127.0.0.1:20030:20030"
+      - "80:80"
+      - "20020:20020"
+      - "20030:20030"
     volumes:
       - ./volumes/config:/opt/o2server/config
       - ./volumes/local:/opt/o2server/local
