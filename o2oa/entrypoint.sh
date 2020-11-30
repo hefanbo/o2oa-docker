@@ -29,8 +29,6 @@ if [ -n "$DB_HOST" ] && [ -n "$DB_PORT" ]; then
   done
   if [ $STATUS = "done" ]; then
     echo "Database is available after $i seconds"
-    echo "Wait additional 10 seconds"
-    sleep 10
   else
     echo "Database is not available after $TIMEOUT seconds"
     exit 1
