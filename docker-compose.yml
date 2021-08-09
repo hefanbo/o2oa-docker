@@ -27,6 +27,7 @@ services:
     restart: unless-stopped
     depends_on:
       - "db"
+    working_dir: /opt/o2server
     environment:
       - DB_HOST=db
       - DB_PORT=5432
